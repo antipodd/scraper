@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Scraper</h1>
+  </div>
+
+  <div class="col-md-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2>Articles</h2>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-4">
+          <ul>
+            {{#each articles}}
+              
+                <li>
+                  {{this.title}}
+                  {{this.link}}
+
+                  
+                </li>
+              
+            {{/each}}
+          </ul>
+        </div>    
+      </div>
+    </div>
+  </div>
+</div>
