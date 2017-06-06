@@ -44,11 +44,13 @@ var Comment = require("../models/Comment.js");
 		  	// Select each instance of the HTML body that you want to scrape
 		  	// NOTE: Cheerio selectors function similarly to jQuery's selectors, 
 		  	// but be sure to visit the package's npm page to see how it works
-		  	$('h1.headline').each(function(i, element){
-
+		  	//$('h1.headline').each(function(i, element){
+		  	$("article.status-published").each(function(i, element){
 			  	var result = {};
-			    result.link = $(this).children().attr("href");
-			    result.title = $(this).children().text();
+			    result.link = $(this).find("header").find("h1").find("a").attr("href");
+			    result.title = $(this).find("header").find("h1").text();
+			    result.img = $(this).find("div.item__content").find("figure").find("a").find("div").find("picture").find("img").attr("src");
+			    result.excerpt = $(this).find("div.item__content").find("div.excerpt").find("p").text();
 			    //need to try to grab image - this also grabs ads
 			    //probably need to check here if article already exists in mongodb
 			    // Pass the result of the scrape into a new variable

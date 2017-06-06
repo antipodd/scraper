@@ -15,13 +15,28 @@
               
                 <li>
                   <a href={{this.link}}>{{this.title}}</a>
-                  {{this.link}}
+                  <br>
+                  <br>
+                  <img src={{this.img}}>
+                  <br>
+                  <br>
+                  {{this.excerpt}}
+                  <br>
+                  <br>
                   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#{{this.id}}">Comments</button>
                   <div id="{{this.id}}" class="collapse">
-                    <!-- {{@comments}}: {{this.text}} -->
-                    {{#each this.comments}}
-                      {{this.text}}
-                    {{/each}}  
+                    <ul>
+                      {{#each this.comments}}
+                        <li>
+                          {{this.text}}
+                          <br>
+                            <form action="/delete/{{this.id}}" method="POST">
+                              <input type="hidden">
+                              <button class="btn btn-primary" type="submit">Delete comment</button>
+                            </form>
+                        </li>
+                      {{/each}}
+                    </ul>  
                     
                     <form action="/note/article/{{this.id}}" method="POST">
                       <div class="form-group">
@@ -34,6 +49,8 @@
 
                   
                 </li>
+                
+                <hr>
               
             {{/each}}
           </ul>

@@ -21,10 +21,14 @@ var ScrapedArticle = new Schema ({
 		type: String,
 		required: true
 	},
-	/*img: {
+	img: {
 		type: String,
-		required:true
-	},*/
+		required: false
+	},
+	excerpt: {
+		type: String,
+		require: false
+	},
 	comments: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Comment'
