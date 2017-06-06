@@ -34,6 +34,14 @@ var Comment = require("../models/Comment.js");
 	});
 
 	router.get("/scrape", function(req, res) {
+		// Create an empty object that will hold all the articles currently existing in the db
+		var articlesInDb;
+
+		Article.find({}, function(error, doc) {
+			articlesInDb = doc;
+			console.log(articlesInDb);
+		});
+
 		request('http://kotaku.com/', function (error, response, html) {
 
 			// Load the HTML into cheerio and save it to a variable
@@ -54,23 +62,37 @@ var Comment = require("../models/Comment.js");
 			    //need to try to grab image - this also grabs ads
 			    //probably need to check here if article already exists in mongodb
 			    // Pass the result of the scrape into a new variable
-			    var entry = new Article(result);
 
-			    // Save entry to db
-			    entry.save(function(err, doc) {
-			    	// Log errors
-			    	if (err) {
-			    		console.log(err);
-			    	}
-			    	// log the doc
-			    	else {
-			    		console.log(doc);
-			    	}
-			    });
+			    // Iterate over existing db to see if article has already been scraped
+			    var counter = 0;
+			    for (var i = 0; i < articlesInDb.length; i++) {
+			    	// If article exists
+			    	if (result.title === articlesInDb[i].title) {
+			    		counter++;
+			    	};
+			    };
+			    // If article doesn't exist counter === 0, save article to db
+			    if (counter === 0) {
+			    	var entry = new Article(result);
+
+				    // Save entry to db
+				    entry.save(function(err, doc) {
+				    	// Log errors
+				    	if (err) {
+				    		console.log(err);
+				    	}
+				    	// log the doc
+				    	else {
+				    		//console.log(doc);
+				    	}
+				    });
+			    }
+			    
 		  	});
 		});
 		// Tell the browser that we finished scraping the text
   		res.send("Scrape Complete");
+  		
 	});
 
 	/*router.get("/articles", function(req, res) {
