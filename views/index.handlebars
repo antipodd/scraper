@@ -9,13 +9,28 @@
         <h2>Articles</h2>
       </div>
       <div class="panel-body">
-        <div class="col-md-4">
+        <div class="col-md-12">
           <ul>
             {{#each articles}}
               
                 <li>
-                  {{this.title}}
+                  <a href={{this.link}}>{{this.title}}</a>
                   {{this.link}}
+                  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#{{this.id}}">Comments</button>
+                  <div id="{{this.id}}" class="collapse">
+                    <!-- {{@comments}}: {{this.text}} -->
+                    {{#each this.comments}}
+                      {{this.text}}
+                    {{/each}}  
+                    
+                    <form action="/note/article/{{this.id}}" method="POST">
+                      <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" name="text" rows="5" id="comment"></textarea>
+                      </div>
+                      <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
+                  </div>
 
                   
                 </li>

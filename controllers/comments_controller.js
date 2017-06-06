@@ -17,7 +17,7 @@ var Comment = require("../models/Comment.js");
 
 	router.post("/note/article/:id", function(req, res) {
   		// Use our Comment model to make a new comment from the req.body
-		var newComment = new db.Comment(req.body);
+		var newComment = new Comment(req.body);
 		// Save the new comment to mongoose
 		newComment.save(function(error, doc) {
 		    
