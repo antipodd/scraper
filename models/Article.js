@@ -29,6 +29,18 @@ var ScrapedArticle = new Schema ({
 		type: String,
 		require: false
 	},
+	date: {
+		type: Date,
+		require: false
+	},
+	author: {
+		type: String,
+		require: false
+	},
+	datePub: {
+		type: String,
+		require: false
+	},
 	comments: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Comment'

@@ -14,7 +14,9 @@
             {{#each articles}}
               
                 <li>
-                  <a href={{this.link}}>{{this.title}}</a>
+                  <h1><a href={{this.link}}><i>{{this.title}}</i></a></h1>
+                  <br>
+                  <h4><i>{{this.author}}</i>   <h6>{{this.datePub}}</h6></h4>
                   <br>
                   <br>
                   <img src={{this.img}}>
@@ -24,17 +26,23 @@
                   <br>
                   <br>
                   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#{{this.id}}">Comments</button>
+                  
                   <div id="{{this.id}}" class="collapse">
+                    <hr>
+                    <h3>Comments</h3>
+                    </br>
                     <ul>
                       {{#each this.comments}}
                         <li>
                           {{this.text}}
                           <br>
-                            <form action="/delete/{{this.id}}" method="POST">
-                              <input type="hidden">
-                              <button class="btn btn-primary" type="submit">Delete comment</button>
-                            </form>
+                          <br>
+                          <form action="/delete/{{this.id}}" method="POST">
+                            <input type="hidden">
+                            <button class="btn btn-primary" type="submit">Delete comment</button>
+                          </form>
                         </li>
+                        <hr>
                       {{/each}}
                     </ul>  
                     

@@ -56,9 +56,9 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // =============================================================
-// *** Override with POST having ?_method=PUT
+// *** Serve static content for the app from the "public" directory in the application directory.
 // =============================================================
-//app.use(methodOverride("_method"));
+app.use(express.static(process.cwd() + "/public"));
 
 // =============================================================
 // *** Set Handlebars
