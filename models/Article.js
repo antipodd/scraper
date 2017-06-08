@@ -15,7 +15,8 @@ var ScrapedArticle = new Schema ({
 	title: {
 		type: String,
 		required: true,
-		trim: true
+		trim: true,
+		unique: true
 	},
 	link: {
 		type: String,
@@ -23,7 +24,7 @@ var ScrapedArticle = new Schema ({
 	},
 	img: {
 		type: String,
-		required: false
+		required: true
 	},
 	excerpt: {
 		type: String,

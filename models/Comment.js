@@ -14,6 +14,7 @@ var Schema = mongoose.Schema;
 var ArticleComment = new Schema ({
 	text: {
 		type: String,
+		minlength: 1
 	}
 });
 

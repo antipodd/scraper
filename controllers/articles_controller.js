@@ -23,7 +23,7 @@ var Comment = require("../models/Comment.js");
 	router.get("/", function(req, res) {
 		//scrapeArticles();
 		//Article.find({ sort: {"date": -1}}).populate("comments").exec(function(error, doc) {
-		Article.find({}).sort({"date": -1}).populate("comments").exec(function(error, doc) {
+		Article.find({}).populate("comments").sort({"date": -1}).exec(function(error, doc) {
 			if(error) {
 			res.send(error)
 			} else {
@@ -59,7 +59,7 @@ var Comment = require("../models/Comment.js");
 			  	var result = {};
 			    result.link = $(this).find("header").find("h1").find("a").attr("href");
 			    result.title = $(this).find("header").find("h1").text();
-			    result.img = $(this).find("div.item__content").find("figure").find("a").find("div").find("picture").find("img").attr("src");
+			    result.img = $(this).find("div.item__content").find("figure").find("a").find("div").find("picture").find("source").attr("data-srcset");
 			    result.excerpt = $(this).find("div.item__content").find("div.excerpt").find("p").text();
 			    result.date = $(this).find("header").find("div.meta--pe").find("div.meta__text").find("time").attr("datetime");
 		    	result.author = $(this).find("header").find("div.meta--pe").find("div.meta__text").find("div.meta__byline").find("a").text();
@@ -94,9 +94,10 @@ var Comment = require("../models/Comment.js");
 			    }
 			    
 		  	});
+		  	res.redirect("/");
 		});
-		// Tell the browser that we finished scraping the text
-  		res.send("Scrape Complete");
+		/*// Tell the browser that we finished scraping the text
+  		res.send("Scrape Complete");*/
   		
 	});
 

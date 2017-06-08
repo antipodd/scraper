@@ -20,12 +20,16 @@ var Comment = require("../models/Comment.js");
 		var newComment = new Comment(req.body);
 		// Save the new comment to mongoose
 		newComment.save(function(error, doc) {
+			if (error) {
+      			res.sendStatus(400);
+      		} else {
 		    
-		    // Find our article and push the new comment id into the article's comments array
-		    Article.findOneAndUpdate({"_id": req.params.id}, { $push: { "comments": doc._id } }, { new: true }, function(err, newdoc) {
-		        //redirect user to the "/" page
-		        res.redirect("/");
-		    });
+			    // Find our article and push the new comment id into the article's comments array
+			    Article.findOneAndUpdate({"_id": req.params.id}, { $push: { "comments": doc._id } }, { new: true }, function(err, newdoc) {
+			        //redirect user to the "/" page
+			        res.redirect("/");
+			    });
+			}
 		});
 	});
 	
