@@ -22,6 +22,7 @@ var Comment = require("../models/Comment.js");
 		newComment.save(function(error, doc) {
 			if (error) {
       			res.sendStatus(400);
+      			//res.send(error);
       		} else {
 		    
 			    // Find our article and push the new comment id into the article's comments array

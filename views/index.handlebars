@@ -3,7 +3,7 @@
     <h1>Kotaku Scraper</h1>
     <form action="/scrape" method="GET">
       <input type="hidden">
-      <button class="btn btn-info btn-block button-text" type="submit">Click here to get the latest articles from Kotaku!</button>
+      <button class="btn btn-info btn-block button-text button-scraper" type="submit">Click here to get the latest articles from Kotaku!</button>
     </form>
   </div>
 
@@ -29,16 +29,22 @@
                   {{this.excerpt}}
                   <br>
                   <br>
-                  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#{{this.id}}">Comments</button>
+                  <button type="button" class="btn btn-info comment-section" data-toggle="collapse" data-target="#{{this.id}}">Comments</button>
                   
                   <div id="{{this.id}}" class="collapse">
                     <hr>
+
+                    
+
                     <h3>Comments</h3>
                     </br>
                     <ul>
                       {{#each this.comments}}
                         <li>
                           {{this.text}}
+                          <br>
+                          <br>
+                          <p>Posted at: </p>{{this.createdAt}}
                           <br>
                           <br>
                           <form action="/delete/{{this.id}}" method="POST">
@@ -48,14 +54,19 @@
                         </li>
                         <hr>
                       {{/each}}
-                    </ul>  
+                    </ul> 
+
+                    <div class="alert alert-danger alert-dismissable fade in">
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error!</strong> Cannot submit an empty comment!
+                      </div> 
                     
                     <form action="/note/article/{{this.id}}" method="POST">
                       <div class="form-group">
                         <label for="comment">Comment:</label>
-                        <textarea class="form-control" name="text" rows="5" id="comment"></textarea>
+                        <textarea class="form-control comment" name="text" rows="5" id="{{this.id}}"></textarea>
                       </div>
-                      <button class="btn btn-primary" id="comment-submit" type="submit">Submit</button>
+                      <button class="btn btn-primary comment-submit" id="{{this.id}}" type="submit">Submit</button>
                     </form>
                   </div>
 

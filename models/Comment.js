@@ -15,8 +15,13 @@ var ArticleComment = new Schema ({
 	text: {
 		type: String,
 		minlength: 1
-	}
+	},
+	createdAt: {
+    type: Date,
+    default: Date.now
+  	}
 });
+
 
 // =============================================================
 // *** Create Comment Model
