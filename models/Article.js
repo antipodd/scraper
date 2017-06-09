@@ -30,7 +30,7 @@ var ScrapedArticle = new Schema ({
 		type: String,
 		require: false
 	},
-	created: {
+	date: {
 		type: Date,
 		require: false
 	},

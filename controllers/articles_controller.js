@@ -23,7 +23,7 @@ var Comment = require("../models/Comment.js");
 	router.get("/", function(req, res) {
 		//scrapeArticles();
 		//Article.find({ sort: {"date": -1}}).populate("comments").exec(function(error, doc) {
-		Article.find({}).populate("comments").sort({"created": -1}).exec(function(error, doc) {
+		Article.find({}).populate("comments").sort({"date": -1}).exec(function(error, doc) {
 			if(error) {
 			res.send(error)
 			} else {
