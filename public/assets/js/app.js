@@ -51,6 +51,8 @@ $(document).ready(function () {
       event.preventDefault();
       $(".alert-danger").show()
     }
+    // Go to section with latest comment added if user clicks another comment section before returning to a previous collapse to leave a comment
+    localStorage.setItem("collapseItem", commentId);
   });
 
   // When clicking the comments collapse button, hide the alert-danger div
