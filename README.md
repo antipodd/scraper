@@ -15,3 +15,8 @@ The user is able to leave comments in the collapsible comments section associate
 3. Run `node server.js` in your first bash window 
 
 [click here to see the app in action!](https://serene-headland-87456.herokuapp.com/)
+
+
+### Known issues
+
+Some articles are not scraped as they fail mongoose validation (require title) - cause unknown at this point
